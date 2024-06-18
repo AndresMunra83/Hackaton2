@@ -2,21 +2,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Agenda {
-
     private List<Contacto> contactos;
-
-    // constructor para el array list
-
-    public Agenda (){
+    
+    public Agenda() {
         this.contactos = new ArrayList<>();
     }
-    // se crea metodo añadir contacto
-    public void agregarContacto(String nombre, String numero){
-        Contacto nuevoContacto = new Contacto( nombre,numero);
+    
+    public void agregarContacto(Contacto nuevoContacto) {
+        // Verificar si el contacto ya existe por nombre
+        for (Contacto contacto : contactos) {
+            if (contacto.getNombre().equals(nuevoContacto.getNombre()) && contacto.getNumero().equals(nuevoContacto.getNumero()) ) {
+                System.out.println("No se puede agregar el contacto. Ya existe un contacto con ese nombre.");
+                return;
+            }
+        }
+        
+        // Si no existe, añadir el contacto a la lista
         contactos.add(nuevoContacto);
-        System.out.println("El contacto ha sido creado exitosamente: " + nuevoContacto);
+        System.out.println("Contacto agregado correctamente: " + nuevoContacto.getNombre());
     }
-
-    public void agregarContacto(Contacto contacto1) {
+    
+    public List<Contacto> getContactos() {
+        return contactos;
     }
 }
