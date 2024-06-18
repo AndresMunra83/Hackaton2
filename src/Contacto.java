@@ -25,6 +25,14 @@ public class Contacto {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+    @Override
+    public String toString() {
+        return "Contacto{" +
+                "nombre='" + nombre + '\'' +
+                ", telefono='" + numero + '\'' +
+                '}';
+    }
 }
 
 
