@@ -3,9 +3,15 @@ import java.util.List;
 
 public class Agenda {
     private List<Contacto> contactos;
-    
-    public Agenda() {
+    private int cantidad;
+
+    public Agenda(int cantidad) {
         this.contactos = new ArrayList<>();
+        this.cantidad = cantidad;
+    }
+
+    public Agenda() {
+        this(10);
     }
     
     public void agregarContacto(Contacto nuevoContacto) {
@@ -25,4 +31,27 @@ public class Agenda {
     public List<Contacto> getContactos() {
         return contactos;
     }
+    // metodo para eliminar contacto de el array contactos
+
+    public void eliminarContacto(String nombre){
+        for(int i = 0; i < contactos.size(); i++) {
+            if (contactos.get(i).getNombre().equalsIgnoreCase(nombre)){
+                contactos.remove(i);
+                System.out.println("el contacto fue eliminado con éxito " + contactos.get(i));
+            }else{
+                System.out.println("el contacto no fue encontrado");
+            }
+        }
+    }
+
+    public boolean comprobarAgenda(){
+        return contactos.size() == cantidad;
+
+    }
+
+    public int espaciosLibres(){
+        return cantidad - contactos.size();
+
+    }
+
 }
