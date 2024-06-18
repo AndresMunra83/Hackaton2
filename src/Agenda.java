@@ -11,8 +11,8 @@ public class Agenda {
         this.contactos = new ArrayList<>();
     }
     // se crea metodo añadir contacto
-    public void agregarContacto(int id, String nombre, String numero){
-        Contacto nuevoContacto = new Contacto( id,nombre,numero);
+    public void agregarContacto(String nombre, String numero){
+        Contacto nuevoContacto = new Contacto( nombre,numero);
         contactos.add(nuevoContacto);
         System.out.println("El contacto ha sido creado exitosamente: " + nuevoContacto);
     }
