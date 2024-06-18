@@ -3,10 +3,12 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    Agenda agenda = new Agenda();
-    boolean salir = false;
 
-    //Menú para el usuario
+    //Se crea un objeto llamado Agenda que gestionará los contactos.
+    Agenda agenda = new Agenda();
+    boolean salir = false; //Se inicializa una variable booleana que controla el bucle del MENU
+
+    //Menú para el usuario, Se usa un WHITE el cual terminará una vez el usuario seleccione la opción 9
 
     while (!salir) {
       System.out.println("\n ________________________________________________________________________\n");
@@ -24,9 +26,10 @@ public class Main {
       int opcion = scanner.nextInt();
       scanner.nextLine();
 
-      switch (opcion) {
+      switch (opcion) {   //Se inicia el SWICH de los casos
 
-        //Agregar un contacto
+        //Agregar un contacto, lee el nombre y el numero, los cuales almacena en un
+        // nuevoContacto para finalmente agregarlo a la agenda
       case 1:
         System.out.print("Ingrese el nombre del contacto: ");
         String nombre = scanner.nextLine();
@@ -37,6 +40,8 @@ public class Main {
         break;
 
         //Validar un contacto
+        //linea 48: Se crea un objeto contacto
+        //linea 49: verifica si el contacto ya existe en la agenda
       case 2:
         System.out.print("Ingrese el nombre del contacto a verificar: ");
         String nombreVerificar = scanner.nextLine();
@@ -50,7 +55,8 @@ public class Main {
         agenda.listarContactos();
         break;
 
-     //Buscar un contacto
+     //Buscar un contacto, compueba que el contacto si esta en la agenda, de lo
+        // contrario sale del if e imprime que el contacto no fue encontrado
       case 4:
         System.out.println("Ingrese el nombre del contacto a buscar:");
         nombre = scanner.nextLine();
@@ -62,14 +68,15 @@ public class Main {
         }
         break;
 
-        //Eliminar un contacto
+        //Eliminar un contacto elimina el contacto de la agenda, teniendo en cuenta la variable del nombre
       case 5:
         System.out.println("Ingrese el nombre del contacto a eliminar:");
         nombre = scanner.nextLine();
         agenda.eliminarContacto(nombre);
         break;
 
-        //Comprobar agenda llena/vacia
+        //Comprobar agenda llena/vacia comprueba si la agenda esta llena, teniendo en cuenta el el numero
+        // predeterminado de espacios dispuestos en la clase Agenda
       case 6:
         if (agenda.comprobarAgenda()) {
           System.out.println("No quedan más espacios disponibles.");
@@ -83,7 +90,8 @@ public class Main {
         System.out.println("El número de espacios libres en la agenda: " + agenda.espaciosLibres());
         break;
 
-        //importar contactos
+        //importar contactos, se crea una lista predeterminada de contactos de emergencia,
+        // con el fin de importar los contactos.
         case 8:
           agenda.importarContactos();
           System.out.println("\nLos contactos de emergencia han sido importados");
