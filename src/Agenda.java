@@ -11,9 +11,12 @@ public class Agenda {
     }
 
     public Agenda() {
-        this(10);
+        this(6);
     }
-    
+
+
+    //METODO agregarContacto
+
     public void agregarContacto(Contacto nuevoContacto) {
         if (comprobarAgenda()) {
             System.out.println("No se puede agregar el contacto. La agenda está llena.");
@@ -28,7 +31,9 @@ public class Agenda {
         contactos.add(nuevoContacto);
         System.out.println("Contacto agregado correctamente: " + nuevoContacto.getNombre());
     }
-    
+
+    //METODO validar si el contacto existe
+
     public boolean existeContacto(Contacto c) {
         for (Contacto contacto : contactos) {
             if (contacto.getNombre().equals(c.getNombre())) {
@@ -37,7 +42,9 @@ public class Agenda {
         }
         return false;
     }
-    
+
+//    METODO ListarContactos
+
     public void listarContactos() {
         if (contactos.isEmpty()) {
             System.out.println("La agenda está vacía.");
@@ -47,17 +54,30 @@ public class Agenda {
             System.out.println(contacto.getNombre() + ": " + contacto.getNumero());
         }
     }
-    
-    public void buscaContacto(String nombre) {
+
+    //METODO BuscarContacto
+
+    public Contacto buscarContacto(String nombre) {
         for (Contacto contacto : contactos) {
-            if (contacto.getNombre().equals(nombre)) {
-                System.out.println(nombre + ": " + contacto.getNumero());
-                return;
+            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
+                return contacto;
             }
         }
-        System.out.println("No se encontró el contacto con nombre: " + nombre);
+        return null;
     }
-    
+
+//    public void buscarContacto(String nombre) {
+//        for (Contacto contacto : contactos) {
+//            if (contacto.getNombre().equals(nombre)) {
+//                System.out.println(nombre + ": " + contacto.getNumero());
+//                return;
+//            }
+//        }
+//        System.out.println("No se encontró el contacto con nombre: " + nombre);
+//    }
+
+    //METODO ImportarContactos
+
     public void importarContactos() {
         Contacto[] contactosEmergencia = {
                 new Contacto("Línea de emergencia", "123"),
@@ -72,11 +92,12 @@ public class Agenda {
             agregarContacto(contacto);
         }
     }
-    
+
     public List<Contacto> getContactos() {
         return contactos;
     }
-    // metodo para eliminar contacto de el array contactos
+
+    // METODO para eliminar contacto de el array contactos
 
     public void eliminarContacto(String nombre){
         for(int i = 0; i < contactos.size(); i++) {
